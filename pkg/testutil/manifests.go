@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/distribution/distribution/v3/manifest/schema1"
 	"net/url"
 	"reflect"
 	"testing"
@@ -12,10 +13,8 @@ import (
 	"github.com/distribution/distribution/v3/manifest"
 	"github.com/distribution/distribution/v3/manifest/manifestlist"
 	"github.com/distribution/distribution/v3/manifest/ocischema"
-	"github.com/distribution/distribution/v3/manifest/schema1"
 	"github.com/distribution/distribution/v3/manifest/schema2"
 	"github.com/distribution/distribution/v3/registry/client/auth"
-	"github.com/docker/libtrust"
 	"github.com/opencontainers/go-digest"
 	v1 "github.com/opencontainers/image-spec/specs-go/v1"
 
@@ -33,41 +32,9 @@ type ManifestSchemaVersion string
 type ConfigPayload []byte
 
 const (
-	ManifestSchema1   ManifestSchemaVersion = "v1"
 	ManifestSchema2   ManifestSchemaVersion = "v2"
 	ManifestSchemaOCI ManifestSchemaVersion = "oci"
 )
-
-// MakeSchema1Manifest constructs a schema 1 manifest from a given list of digests and returns
-// the digest of the manifest
-func MakeSchema1Manifest(name, tag string, layers []distribution.Descriptor) (distribution.Manifest, error) {
-	m := schema1.Manifest{
-		Versioned: manifest.Versioned{
-			SchemaVersion: 1,
-		},
-		FSLayers: make([]schema1.FSLayer, 0, len(layers)),
-		History:  make([]schema1.History, 0, len(layers)),
-		Name:     name,
-		Tag:      tag,
-	}
-
-	for _, layer := range layers {
-		m.FSLayers = append(m.FSLayers, schema1.FSLayer{BlobSum: layer.Digest})
-		m.History = append(m.History, schema1.History{V1Compatibility: "{}"})
-	}
-
-	pk, err := libtrust.GenerateECP256PrivateKey()
-	if err != nil {
-		return nil, fmt.Errorf("unexpected error generating private key: %v", err)
-	}
-
-	signedManifest, err := schema1.Sign(&m, pk)
-	if err != nil {
-		return nil, fmt.Errorf("error signing manifest: %v", err)
-	}
-
-	return signedManifest, nil
-}
 
 // MakeSchema2Manifest constructs a schema 2 manifest from a given list of digests and returns
 // the digest of the manifest
@@ -184,11 +151,6 @@ func CreateAndUploadTestManifest(
 	}
 
 	switch schemaVersion {
-	case ManifestSchema1:
-		manifest, err = MakeSchema1Manifest(repoName, tag, layerDescriptors)
-		if err != nil {
-			return "", "", "", nil, fmt.Errorf("failed to make manifest of schema 1: %v", err)
-		}
 	case ManifestSchema2:
 		cfgPayload, cfgDesc, err := MakeManifestConfig()
 		if err != nil {
