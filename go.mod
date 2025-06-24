@@ -6,7 +6,7 @@ toolchain go1.22.1
 
 require (
 	github.com/bshuster-repo/logrus-logstash-hook v1.1.0
-	github.com/distribution/distribution/v3 v3.0.0+incompatible
+	github.com/distribution/distribution/v3 v3.0.0
 	github.com/docker/docker v20.10.21+incompatible
 	github.com/docker/go-units v0.5.0
 	github.com/docker/libtrust v0.0.0-20160708172513-aabc10ec26b7
@@ -120,8 +120,6 @@ require (
 )
 
 replace (
-	github.com/distribution/distribution/v3 => github.com/openshift/docker-distribution/v3 v3.0.0-20250403075108-ac5742e896d4
-
 	// CVE-2025-30204
 	github.com/golang-jwt/jwt/v4 => github.com/golang-jwt/jwt/v4 v4.5.2
 

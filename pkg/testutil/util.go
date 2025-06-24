@@ -16,11 +16,11 @@ import (
 	"time"
 
 	"github.com/distribution/distribution/v3"
-	"github.com/distribution/distribution/v3/reference"
 	distclient "github.com/distribution/distribution/v3/registry/client"
 	"github.com/distribution/distribution/v3/registry/client/auth"
 	"github.com/distribution/distribution/v3/registry/client/auth/challenge"
 	"github.com/distribution/distribution/v3/registry/client/transport"
+	"github.com/distribution/reference"
 	"github.com/opencontainers/go-digest"
 
 	"k8s.io/apimachinery/pkg/util/errors"
