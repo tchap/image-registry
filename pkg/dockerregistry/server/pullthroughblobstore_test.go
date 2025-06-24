@@ -22,7 +22,7 @@ import (
 	imageapiv1 "github.com/openshift/api/image/v1"
 	cfgfake "github.com/openshift/client-go/config/clientset/versioned/fake"
 	operatorfake "github.com/openshift/client-go/operator/clientset/versioned/fake"
-	"github.com/openshift/library-go/pkg/image/registryclient"
+	registryclient "github.com/openshift/library-go/pkg/image/registryclient/v2"
 
 	"github.com/openshift/image-registry/pkg/dockerregistry/server/cache"
 	dockerregistryclient "github.com/openshift/image-registry/pkg/dockerregistry/server/client"

@@ -11,7 +11,7 @@ import (
 
 	cfgfake "github.com/openshift/client-go/config/clientset/versioned/fake"
 	operatorfake "github.com/openshift/client-go/operator/clientset/versioned/fake"
-	"github.com/openshift/library-go/pkg/image/registryclient"
+	registryclient "github.com/openshift/library-go/pkg/image/registryclient/v2"
 
 	"github.com/openshift/image-registry/pkg/dockerregistry/server/metrics"
 	"github.com/openshift/library-go/pkg/image/reference"

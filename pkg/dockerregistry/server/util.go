@@ -17,7 +17,7 @@ import (
 	imageapiv1 "github.com/openshift/api/image/v1"
 	apicfgv1 "github.com/openshift/client-go/config/clientset/versioned/typed/config/v1"
 	operatorv1alpha1 "github.com/openshift/client-go/operator/clientset/versioned/typed/operator/v1alpha1"
-	"github.com/openshift/library-go/pkg/image/registryclient"
+	registryclient "github.com/openshift/library-go/pkg/image/registryclient/v2"
 
 	"github.com/openshift/image-registry/pkg/dockerregistry/server/cache"
 	"github.com/openshift/image-registry/pkg/dockerregistry/server/metrics"

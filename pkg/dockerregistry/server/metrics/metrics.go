@@ -10,7 +10,7 @@ import (
 	"github.com/distribution/distribution/v3/registry/api/errcode"
 	storagedriver "github.com/distribution/distribution/v3/registry/storage/driver"
 
-	"github.com/openshift/library-go/pkg/image/registryclient"
+	registryclient "github.com/openshift/library-go/pkg/image/registryclient/v2"
 
 	"github.com/openshift/image-registry/pkg/dockerregistry/server/wrapped"
 )

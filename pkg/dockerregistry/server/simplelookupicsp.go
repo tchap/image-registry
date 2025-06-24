@@ -13,7 +13,7 @@ import (
 	cfgv1client "github.com/openshift/client-go/config/clientset/versioned/typed/config/v1"
 	operatorv1alpha1client "github.com/openshift/client-go/operator/clientset/versioned/typed/operator/v1alpha1"
 	reference "github.com/openshift/library-go/pkg/image/reference"
-	"github.com/openshift/library-go/pkg/image/registryclient"
+	registryclient "github.com/openshift/library-go/pkg/image/registryclient/v2"
 )
 
 // simpleLookupImageMirrorSets holds ImageContentSourcePolicy, ImageDigestMirrorSet, and ImageTagMirrorSet variables to look up image sources. Satisfies
